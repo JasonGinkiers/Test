@@ -4,8 +4,21 @@ package server
 //cloud-torrent uses "<id>-item" handlers
 var defaultSearchConfig = []byte(`{
 	"kat": {
-		"name": "Kickass Torrents",
-		"url": "https://kat.cr/usearch/{{query}}/{{page:1}}/?field=seeders&sorder=desc",
+		"name": "Kickass katcr.to",
+		"url": "http://katcr.to/usearch/{{query}}/{{page:1}}/?field=seeders&sorder=desc",
+		"list": "#mainSearchTable table tr[id]",
+		"result": {
+			"name":".cellMainLink",
+			"path":[".cellMainLink", "@href"],
+			"magnet": ["a[title=Torrent\\ magnet\\ link]", "@href"],
+			"size": "td.nobr.center",
+			"seeds": ".green.center",
+			"peers": ".red.center"
+		}
+	},
+        "kat": {
+		"name": "Kickass kat.am",
+		"url": "http://kat.am/usearch/{{query}}/{{page:1}}/?field=seeders&sorder=desc",
 		"list": "#mainSearchTable table tr[id]",
 		"result": {
 			"name":".cellMainLink",
@@ -17,8 +30,8 @@ var defaultSearchConfig = []byte(`{
 		}
 	},
 	"tpb": {
-		"name": "The Pirate Bay",
-		"url": "https://thepiratebay.se/search/{{query}}/{{page:0}}/7//",
+		"name": "The Pirate Bay.org",
+		"url": "https://thepiratebay.org/search/{{query}}/{{page:0}}/7//",
 		"list": "#searchResult > tbody > tr",
 		"result": {
 			"name":"a.detLink",
